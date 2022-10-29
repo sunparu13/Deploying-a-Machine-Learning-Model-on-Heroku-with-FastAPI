@@ -37,7 +37,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Pull data from DVC
-        run: |
+      run: |
         dvc pull
 
     - name: Install dependencies
