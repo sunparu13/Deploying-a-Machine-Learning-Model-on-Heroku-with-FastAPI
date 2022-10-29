@@ -1,0 +1,4 @@
+[core]
+    remote = p3data
+['remote "p3data"']
+    url = s3://udamlopsp3
