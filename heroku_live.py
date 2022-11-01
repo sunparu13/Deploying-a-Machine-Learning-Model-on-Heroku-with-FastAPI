@@ -18,7 +18,7 @@ lower_sample = {
     "native_country": "United-States"
 }
 
-pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', data=json.dumps(lower_sample))
+pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', json= lower_sample)
 print(pred.status_code)
 print(pred.json())
 

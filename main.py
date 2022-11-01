@@ -31,11 +31,9 @@ class FeatureConfig(BaseModel):
 
 app = FastAPI()
 
-
 @app.get("/")
 async def get_items():
     return {"message": "greeting"}
-
 
 @app.post("/inference_main")
 async def inference_main(input: FeatureConfig):
@@ -58,7 +56,7 @@ async def inference_main(input: FeatureConfig):
                               training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
     if y_pred[0]:
-        pred = ">50k"
+        pred = {"salary": ">50k"}
     else:
-        pred = "<=50k"
+        pred = {"salary": "<=50k"}
     return pred
