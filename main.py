@@ -29,53 +29,6 @@ class FeatureConfig(BaseModel):
     hours_per_week: int = Field(alias="hours-per-week")
     native_country: str = Field(alias="native-country")
 
-    class Config:
-        schema_extra = {
-            "example_lower50k": {
-                "age": 53,
-                "workclass": "Private",
-                "fnlgt": 234721,
-                "education": "11th",
-                "education-num": 7,
-                "marital-status": "Married-civ-spouse",
-                "occupation": "Handlers-cleaners",
-                "relationship": "Husband",
-                "race": "Black",
-                "sex": "Male",
-                "capital-gain": 0,
-                "capital-loss": 0,
-                "hours-per-week": 40,
-                "native-country": "United-States"
-            },
-            "example_over50k": {
-                "age": 31,
-                "workclass": "Private",
-                "fnlgt": 45781,
-                "education": "Masters",
-                "education-num": 14,
-                "marital-status": "Never-married",
-                "occupation": "Prof-specialty",
-                "relationship": "Not-in-family",
-                "race": "White",
-                "sex": "Female",
-                "capital-gain": 14084,
-                "capital-loss": 0,
-                "hours-per-week": 50,
-                "native-country": "United-States"
-            }
-        }
-
-
-cat_features = [
-    "workclass",
-    "education",
-    "marital_status",
-    "occupation",
-    "relationship",
-    "race",
-    "sex",
-    "native_country"]
-
 app = FastAPI()
 
 
@@ -84,17 +37,28 @@ async def get_items():
     return {"message": "greeting"}
 
 
-@app.post("/u")
-async def inference_main(features: FeatureConfig):
-    features = features.dict(by_alias=True)
-    df = pd.DataFrame(data=features, index=[0])
+@app.post("/inference_main")
+async def inference_main(input: FeatureConfig):
+    cat_features = [
+    "workclass",
+    "education",
+    "marital_status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native_country"]
+    input = input.dict(by_alias=True)
+    df = pd.DataFrame(data=input, index=[0])
     #cat_features_reedit = [feature.replace(
      #   '-', '_') for feature in cat_features]
     #df.rename(columns=cat_features_reedit, inplace=True)
     model, encoder, lb = load_model('model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl' )
-    X_test, _, _, _,_ = process_data(df, categorical_features=cat_features,
+    X_test, _, _, _ = process_data(df, categorical_features=cat_features,
                               training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
-    prediction = lb.inverse_transform(y_pred)[0]
-    print(prediction)
-    return {"prediction": prediction}
+    if y_pred[0]:
+        pred = ">50k"
+    else:
+        pred = "<=50k"
+    return pred

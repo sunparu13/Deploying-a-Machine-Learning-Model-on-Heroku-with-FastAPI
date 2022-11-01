@@ -30,8 +30,8 @@ def test_lower_prediction():
             "native_country": "United-States"
         },
     )
-    assert response.status_code == 200, response.json()
-    #assert response.json() == {"prediction": {"salary": "<=50K"}}
+    assert response.status_code == 200
+    assert response.json() == {"salary": "<=50K"}
 
 def test_higher_prediction():
     response = client.post(
@@ -41,17 +41,17 @@ def test_higher_prediction():
             "workclass": "Private",
             "fnlgt": 45781,
             "education": "Masters",
-            "education-num": 14,
-            "marital-status": "Never-married",
+            "education_num": 14,
+            "marital_status": "Never-married",
             "occupation": "Prof-specialty",
             "relationship": "Not-in-family",
             "race": "White",
             "sex": "Female",
-            "capital-gain": 14084,
-            "capital-loss": 0,
-            "hours-per-week": 50,
-            "native-country": "United-States"
+            "capital_gain": 14084,
+            "capital_loss": 0,
+            "hours_per_week": 50,
+            "native_country": "United-States"
         },
     )
-    assert response.status_code == 200, response.json()
-    #assert response.json() == {"prediction": {"salary": ">50K"}}
+    assert response.status_code == 200
+    assert response.json() == {"salary": ">50K"}
