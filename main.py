@@ -86,8 +86,7 @@ async def get_items():
 
 @app.post("/inference_main")
 async def inference_main(features: FeatureConfig):
-    features = features.dict()
-    df = pd.DataFrame(data=features.values()).T
+    df = pd.DataFrame(data=features.dict(by_alias=True), index=[0])
     df = df['age',
       'workclass',
       'fnlgt',
@@ -110,4 +109,5 @@ async def inference_main(features: FeatureConfig):
                               training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
     prediction = lb.inverse_transform(y_pred)[0]
+    print(prediction)
     return {"prediction": prediction}
