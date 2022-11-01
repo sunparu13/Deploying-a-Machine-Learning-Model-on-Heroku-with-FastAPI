@@ -29,7 +29,7 @@ def test_lower_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json() == {"<=50K"}
+    assert response.json() == {"salary": "<=50K"}
 
 def test_higher_prediction():
     response = client.post(
@@ -52,4 +52,4 @@ def test_higher_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json() == {">50K"}
+    assert response.json() == {"salary": ">50k"}
