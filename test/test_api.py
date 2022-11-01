@@ -1,8 +1,6 @@
-import json
 from fastapi.testclient import TestClient
-from fastapi import FastAPI
+from main import app
 
-app = FastAPI()
 client = TestClient(app)
 
 def test_get_method():
@@ -31,7 +29,7 @@ def test_lower_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json() == {"salary": "<=50K"}
+    assert response.json() == {"<=50K"}
 
 def test_higher_prediction():
     response = client.post(
@@ -54,4 +52,4 @@ def test_higher_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json() == {"salary": ">50K"}
+    assert response.json() == {">50K"}
