@@ -11,7 +11,7 @@ def test_preprocessing():
     "race",
     "sex",
     "native-country"]
-    X_train, _, _, _ = preprocessing("data/census_clean.csv", cat_features)
+    X_train, _, _, _, _ = preprocessing("data/census_clean.csv", cat_features)
     assert os.path.isfile("model/encoder.pkl")
     assert os.path.isfile("model/lb.pkl")
 
@@ -25,7 +25,7 @@ def test_train():
     "race",
     "sex",
     "native-country"]
-    X_train, y_train, _, _ = preprocessing("data/census_clean.csv", cat_features)
+    X_train, y_train, _, _, _ = preprocessing("data/census_clean.csv", cat_features)
     train(X_train, y_train)
     assert os.path.isfile("model/model.pkl")
     
