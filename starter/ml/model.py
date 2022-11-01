@@ -1,4 +1,4 @@
-from copyreg import pickle
+import pickle
 import logging
 from numpy import mean
 from numpy import std

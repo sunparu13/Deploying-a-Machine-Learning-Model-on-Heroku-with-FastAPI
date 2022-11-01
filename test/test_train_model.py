@@ -12,9 +12,6 @@ def test_preprocessing():
     "sex",
     "native-country"]
     X_train, _, _, _ = preprocessing("data/census_clean.csv", cat_features)
-
-    assert X_train.shape[0] > 0
-    assert X_train.shape[1] == 12
     assert os.path.isfile("model/encoder.pkl")
     assert os.path.isfile("model/lb.pkl")
 

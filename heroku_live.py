@@ -1,4 +1,5 @@
 import requests
+import json
 
 lower_sample = {
     "age": 53,
@@ -17,7 +18,7 @@ lower_sample = {
     "native-country": "United-States"
 }
 
-pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', json=lower_sample)
+pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', data=json.dumps(lower_sample))
 print(pred.status_code)
 print(pred.json())
 
@@ -38,6 +39,6 @@ higher_sample = {
     "native-country": "United-States"
 }
 
-pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', json=higher_sample)
+pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', data=json.dumps(higher_sample))
 print(pred.status_code)
 print(pred.json())
