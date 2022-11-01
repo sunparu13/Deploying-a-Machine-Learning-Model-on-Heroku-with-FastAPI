@@ -92,7 +92,7 @@ async def inference_main(features: FeatureConfig):
      #   '-', '_') for feature in cat_features]
     #df.rename(columns=cat_features_reedit, inplace=True)
     model, encoder, lb = load_model('model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl' )
-    X_test, _, _, _ = process_data(df, categorical_features=cat_features,
+    X_test, _, _, _,_ = process_data(df, categorical_features=cat_features,
                               training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
     prediction = lb.inverse_transform(y_pred)[0]
