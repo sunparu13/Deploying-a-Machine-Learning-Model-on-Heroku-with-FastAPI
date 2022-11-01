@@ -84,7 +84,7 @@ async def get_items():
     return {"message": "greeting"}
 
 
-@app.post("/inference_main")
+@app.post("/u")
 async def inference_main(features: FeatureConfig):
     features = features.dict(by_alias=True)
     df = pd.DataFrame(data=features, index=[0])
