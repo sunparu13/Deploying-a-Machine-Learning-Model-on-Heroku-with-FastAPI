@@ -14,7 +14,7 @@ def test_lower_prediction():
         json={
             "age": 32,
             "workclass": "Private",
-            "fnlwgt": 205019,
+            "fnlgt": 205019,
             "education": "Assoc-acdm",
             "education_num": 12,
             "marital_status": "Never-married",
