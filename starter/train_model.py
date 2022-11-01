@@ -1,13 +1,9 @@
 # Script to train machine learning model.
-
 # Add the necessary imports for the starter code.
-import sys
-sys.path.append('/Users/sunparu/Documents/schulung/mldevops/Deploying-a-Machine-Learning-Model-on-Heroku-with-FastAPI/data')
-sys.path.append('/Users/sunparu/Documents/schulung/mldevops/Deploying-a-Machine-Learning-Model-on-Heroku-with-FastAPI/model')
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from ml.data import process_data
-from ml.model import train_model
+from starter.ml.data import process_data
+from starter.ml.model import train_model
 import pickle
 
 

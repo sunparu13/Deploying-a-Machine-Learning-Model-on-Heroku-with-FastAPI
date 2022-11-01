@@ -1,8 +1,4 @@
 import os
-import sys
-sys.path.append('/Users/sunparu/Documents/schulung/mldevops/Deploying-a-Machine-Learning-Model-on-Heroku-with-FastAPI/data')
-sys.path.append('/Users/sunparu/Documents/schulung/mldevops/Deploying-a-Machine-Learning-Model-on-Heroku-with-FastAPI/model')
-
 from starter.train_model import preprocessing, train
 
 def test_preprocessing():
