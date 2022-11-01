@@ -2,7 +2,6 @@ from http import client
 import json
 from fastapi.testclient import TestClient
 from fastapi import FastAPI
-from main import FeatureConfig
 
 def test_get_method():
     app = FastAPI()

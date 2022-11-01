@@ -86,24 +86,11 @@ async def get_items():
 
 @app.post("/inference_main")
 async def inference_main(features: FeatureConfig):
-    df = pd.DataFrame(data=features.dict(by_alias=True), index=[0])
-    df = df['age',
-      'workclass',
-      'fnlgt',
-      'education',
-      'education-num',
-      'marital-status',
-      'occupation',
-      'relationship',
-      'race',
-      'sex',
-      'capital-gain',
-      'capital-loss',
-      'hours-per-week',
-      'native-country'
-    ]
+    features = features.dict(by_alias=True)
+    df = pd.DataFrame(data=features, index=[0])
     cat_features_reedit = [feature.replace(
         '-', '_') for feature in cat_features]
+    df.rename(columns=cat_features_reedit, inplace=True)
     model, encoder, lb = load_model('model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl' )
     X_test, _, _, _ = process_data(df, categorical_features=cat_features_reedit,
                               training=False, label=None, encoder=encoder, lb=lb)

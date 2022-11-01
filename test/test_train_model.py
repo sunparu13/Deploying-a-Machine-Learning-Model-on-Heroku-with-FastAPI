@@ -19,7 +19,16 @@ def test_preprocessing():
     assert os.path.isfile("model/lb.pkl")
 
 def test_train():
-    X_train, y_train, _, _ = preprocessing("data/census_clean.csv")
+    cat_features = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country"]
+    X_train, y_train, _, _ = preprocessing("data/census_clean.csv", cat_features)
     train(X_train, y_train)
     assert os.path.isfile("model/model.pkl")
     
