@@ -1,4 +1,6 @@
 [core]
     remote = p3data
+[cache]
+    type = copy
 ['remote "p3data"']
     url = s3://udamlopsp3
