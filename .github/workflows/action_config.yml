@@ -25,9 +25,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-
-    - name: Set up DVC
-      uses: iterative/setup-dvc@v1
     
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -35,10 +32,13 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
+    
+    - name: Set up DVC
+      uses: iterative/setup-dvc@v1
 
     - name: Pull data from DVC
       run: |
-        dvc pull
+        dvc pull --force
 
     - name: Install dependencies
       run: |
@@ -55,4 +55,4 @@ jobs:
     
     - name: Test with pytest
       run: |
-        pytest
+        pytest test
