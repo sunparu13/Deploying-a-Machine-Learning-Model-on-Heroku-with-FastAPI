@@ -8,7 +8,7 @@ on: [push] # When this action runs.
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.8]
