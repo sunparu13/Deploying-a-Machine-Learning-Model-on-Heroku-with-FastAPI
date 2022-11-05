@@ -9,6 +9,7 @@ from starter.ml.model import train_model, inference, load_model
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
+        os.system("dvc config core.hardlink_lock true")
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 
