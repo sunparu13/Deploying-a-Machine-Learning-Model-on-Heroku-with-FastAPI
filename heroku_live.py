@@ -20,7 +20,7 @@ lower_sample = {
 
 pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', json= lower_sample)
 print(pred.status_code)
-print(pred)
+print(pred.json())
 
 higher_sample = {
     "age": 31,
@@ -41,4 +41,4 @@ higher_sample = {
 
 pred = requests.post('https://udamlopsp3.herokuapp.com/inference_main', data=json.dumps(higher_sample))
 print(pred.status_code)
-print(pred)
+print(pred.json())
