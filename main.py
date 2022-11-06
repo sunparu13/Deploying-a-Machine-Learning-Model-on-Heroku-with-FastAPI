@@ -74,7 +74,7 @@ async def inference_main(input: FeatureConfig):
                                    training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
     if y_pred[0]:
-        pred = {"salary": "<=50k"}
-    else:
         pred = {"salary": ">50k"}
+    else:
+        pred = {"salary": "<=50k"}
     return pred

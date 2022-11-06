@@ -21,9 +21,9 @@ The data was obtained from the UCI Machine Learning Repository (https://archive.
 ## Metrics
 The overall performance metrics on the test data set are:
 
-Precision: 0.7397
-Recall: 0.6294
-F1 Score: 0.6802
+Precision: 0.7144
+Recall: 0.6278
+F1 Score: 0.6683
 
 ## Ethical Considerations
 
