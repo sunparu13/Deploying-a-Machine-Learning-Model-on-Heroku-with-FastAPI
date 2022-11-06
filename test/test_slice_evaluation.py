@@ -3,7 +3,7 @@ from starter.ml.model import slice_evaluation
 from starter.train_model import preprocessing, train
 
 
-def test_slice_evaluation(df, model, cat_features, encoder, lb):
+def test_slice_evaluation():
     """
     computes performance on model slices.
     
