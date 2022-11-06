@@ -19,20 +19,21 @@ def hyphen_to_underscore(field_name):
 
 
 class FeatureConfig(BaseModel):
-    age: int = Field(..., example=45)
-    capital_gain: int = Field(..., example=2174)
-    capital_loss: int = Field(..., example=0)
-    education: str = Field(..., example="Bachelors")
-    education_num: int = Field(..., example=13)
-    fnlgt: int = Field(..., example=2334)
-    hours_per_week: int = Field(..., example=60)
+    age: int = Field(..., example=31)
+    workclass: str = Field(..., example="Private")
+    fnlgt: int = Field(..., example=45781)
+    education: str = Field(..., example="Masters")
+    education_num: int = Field(..., example=14)
     marital_status: str = Field(..., example="Never-married")
-    native_country: str = Field(..., example="Cuba")
     occupation: str = Field(..., example="Prof-specialty")
-    race: str = Field(..., example="Black")
-    relationship: str = Field(..., example="Wife")
+    relationship: str = Field(..., example="Not-in-family")
+    race: str = Field(..., example="White")
     sex: str = Field(..., example="Female")
-    workclass: str = Field(..., example="State-gov")
+    capital_gain: int = Field(..., example=14084)
+    capital_loss: int = Field(..., example=0)
+    hours_per_week: int = Field(..., example=50)
+    native_country: str = Field(..., example="United-States")
+    
 
     class Config:
         alias_generator = hyphen_to_underscore
@@ -45,11 +46,11 @@ model, encoder, lb = load_model(
         'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
 
 
-@app.on_event("startup")
-async def startup_event():
-    global model, encoder, lb
-    model, encoder, lb = load_model(
-        'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
+#@app.on_event("startup")
+#async def startup_event():
+ #   global model, encoder, lb
+  #  model, encoder, lb = load_model(
+   #     'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
 
 
 @app.get("/")
@@ -74,7 +75,7 @@ async def inference_main(input: FeatureConfig):
                                    training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)
     if y_pred[0]:
-        pred = {"salary": "<=50k"}
-    else:
         pred = {"salary": ">50k"}
+    else:
+        pred = {"salary": "<=50k"}
     return pred
