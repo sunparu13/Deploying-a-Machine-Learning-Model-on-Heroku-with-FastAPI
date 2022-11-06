@@ -62,12 +62,12 @@ async def inference_main(input: FeatureConfig):
     cat_features = [
         "workclass",
         "education",
-        "marital_status",
+        "marital-status",
         "occupation",
         "relationship",
         "race",
         "sex",
-        "native_country"]
+        "native-country"]
     input = input.dict(by_alias=True)
     df = pd.DataFrame(data=input, index=[0])
     X_test, _, _, _ = process_data(df, categorical_features=cat_features,
