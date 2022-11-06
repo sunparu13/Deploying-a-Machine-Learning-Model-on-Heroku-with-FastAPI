@@ -56,6 +56,7 @@ async def get_items():
 
 @app.post("/inference_main")
 async def inference_main(input: FeatureConfig):
+    global model, encoder, lb
     cat_features = [
         "workclass",
         "education",
@@ -67,9 +68,6 @@ async def inference_main(input: FeatureConfig):
         "native_country"]
     input = input.dict(by_alias=True)
     df = pd.DataFrame(data=input, index=[0])
-    # cat_features_reedit = [feature.replace(
-    #   '-', '_') for feature in cat_features]
-    #df.rename(columns=cat_features_reedit, inplace=True)
     X_test, _, _, _ = process_data(df, categorical_features=cat_features,
                                    training=False, label=None, encoder=encoder, lb=lb)
     y_pred = inference(model, X_test)

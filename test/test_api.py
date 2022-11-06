@@ -3,10 +3,12 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_get_method():
     res = client.get("/")
     assert res.status_code == 200
     assert res.json() == {"message": "greeting"}
+
 
 def test_lower_prediction():
     response = client.post(
@@ -30,6 +32,7 @@ def test_lower_prediction():
     )
     assert response.status_code == 200
     assert response.json() == {"salary": "<=50k"}
+
 
 def test_higher_prediction():
     response = client.post(

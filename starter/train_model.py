@@ -30,15 +30,19 @@ def preprocessing(data_path, cat_features):
     return X_train, y_train, encoder, lb, df_test
 
 # train model
+
+
 def train(X_train, y_train):
     model = train_model(X_train, y_train)
     with open("model/model.pkl", 'wb') as file_model:
         pickle.dump(model, file_model)
     return model
 
-def test_model(test, cat_features=None, label="salary"):    
+
+def test_model(test, cat_features=None, label="salary"):
     # load model
-    model, encoder, lb = load_model('model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl' )    
+    model, encoder, lb = load_model(
+        'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
     # testing
     X_test, y_test, _, _ = process_data(
         test, categorical_features=cat_features, label=label, training=False, encoder=encoder, lb=lb)
