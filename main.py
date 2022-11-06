@@ -41,6 +41,9 @@ class FeatureConfig(BaseModel):
 
 app = FastAPI()
 
+model, encoder, lb = load_model(
+        'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
+
 
 @app.on_event("startup")
 async def startup_event():
@@ -56,7 +59,6 @@ async def get_items():
 
 @app.post("/inference_main")
 async def inference_main(input: FeatureConfig):
-    global model, encoder, lb
     cat_features = [
         "workclass",
         "education",
